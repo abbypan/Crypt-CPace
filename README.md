@@ -1,2 +1,0 @@
-# Crypt-CPace
-CPace protocol
