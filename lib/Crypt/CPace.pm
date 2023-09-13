@@ -200,6 +200,7 @@ sub prepare_ISK {
   my @msg_recv_data = parse_recv_msg( $msg_recv );
 
   my $point_hex  = unpack( "H*", $msg_recv_data[0] );
+
   my $point_recv = hex2point( $group, $point_hex );
 
   my $K = scalar_mult_vfy( $group, $point_recv, $rnd, $ctx );
@@ -214,8 +215,8 @@ sub prepare_ISK {
 
   my $Prepare_ISK = prefix_free_cat( $DSI.'_ISK', $sid, $K->to_bin() ) . $trans;
 
-  my $md  = EVP_get_digestbyname( $hash_name );
-  my $ISK = digest( $md, $Prepare_ISK );
+  #my $md  = EVP_get_digestbyname( $hash_name );
+  my $ISK = digest( $hash_name, $Prepare_ISK );
 
   return $ISK;
 } ## end sub prepare_ISK

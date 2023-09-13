@@ -1,17 +1,19 @@
 #!/usr/bin/perl
 #use Digest::SHA qw/sha256/;
-use List::Util qw/min/;
 use strict;
 use warnings;
 
-#use lib '../lib';
+use FindBin;
+use List::Util qw/min/;
+
+#use lib "$FindBin::RealBin/../lib";
 
 use Test::More ;
 
 use Crypt::OpenSSL::EC;
 use Crypt::OpenSSL::Hash2Curve;
 use Crypt::OpenSSL::Base::Func;
-use Crypt::CPace ;
+use Crypt::CPace;
 
 # a, b with same info
 my $PRS = 'Password';
