@@ -13,7 +13,7 @@ use Crypt::OpenSSL::Base::Func;
 
 #use Smart::Comments;
 
-our $VERSION=0.013;
+our $VERSION=0.014;
 
 our @ISA    = qw(Exporter);
 our @EXPORT = qw/
@@ -201,7 +201,12 @@ sub prepare_ISK {
 
   my $point_hex  = unpack( "H*", $msg_recv_data[0] );
 
-  my $point_recv = hex2point( $group, $point_hex );
+  #my $point_recv = Crypt::OpenSSL::EC::EC_POINT::new( $group );
+  #$point_recv = Crypt::OpenSSL::EC::EC_POINT::hex2point( $group, $point_hex, $point_recv, $ctx );
+  my $nid = Crypt::OpenSSL::EC::EC_GROUP::get_curve_name($group);
+  my $group_name = OBJ_nid2sn($nid);
+  print "nid,", $nid, "group, ", $group_name, ",\n";
+  my $point_recv = hex2point($group_name, $point_hex);
 
   my $K = scalar_mult_vfy( $group, $point_recv, $rnd, $ctx );
   return unless($K);

@@ -56,7 +56,7 @@ my $ISKa_order = prepare_ISK($DSI, $sid, $group, $ya, $MSGa, $MSGb, 1, 0, 'SHA25
 print "order isk a: ", unpack("H*", $ISKa_order), "\n";
 
 my $ISKa_unorder = prepare_ISK($DSI, $sid, $group, $ya, $MSGa, $MSGb, 1, 1, 'SHA256', $ctx);
-print "unorder isk: ", unpack("H*", $ISKa_unorder), "\n\n";
+print "unorder isk a: ", unpack("H*", $ISKa_unorder), "\n\n";
 
 # b recv Msga, calc ISK
 my $ISKb_order = prepare_ISK($DSI, $sid, $group, $yb, $MSGb, $MSGa, 0, 0, 'SHA256', $ctx);
